@@ -12,29 +12,31 @@
             var birthYear = Number(document.forms["myForm"]["bday"].value.substring(0,4));
             var age = (new Date().getFullYear()) - birthYear;
 
-            let flag = true;
+            let flagpass = true;
+            let flagage = true;
             console.log(pass);
             console.log(birthYear);
             console.log(age);
 
             if(pass.length < 8){
-                document.getElementById("passId").innerHTML = "Password must be at least 8 characters.";
-                flag = false;
-            }else{
+                document.getElementById("passId").innerHTML="Password must be at least 8 characters.";
+                flagpass = false;
+            } else{
                 document.getElementById("passId").innerHTML = "";
             }
 
             if (age < 21){
                 document.getElementById("ageId").innerHTML="Minors are not allowed!";
-                flag = false;
+                flagage = false;
             }else{
-                document.getElementById("passId").innerHTML = "";
+                document.getElementById("ageId").innerHTML = "";
             }
 
-            if(flag == true){
+            if(flagage && flagpass){
                 document.getElementById("alert").innerHTML = "Congrats!";
-            }else{
-                return false;
+            }
+            else{
+                document.getElementById("alert").innerHTML = "";
             }
         }
     </script>
