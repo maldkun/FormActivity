@@ -21,12 +21,14 @@
                 document.getElementById("passId").innerHTML = "Password must be at least 8 characters.";
                 flag = false;
             }else{
-                flag;
+                document.getElementById("passId").innerHTML = "";
             }
 
             if (age < 21){
                 document.getElementById("ageId").innerHTML="Minors are not allowed!";
                 flag = false;
+            }else{
+                document.getElementById("passId").innerHTML = "";
             }
 
             if(flag == true){
