@@ -5,6 +5,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <title>Form Activity</title>
+    <script language="javascript" type="text/javascript">
+
+        function validForm(){
+            var pass = document.forms["myForm"]["password"].value;
+            var birthYear = Number(document.forms["myForm"]["bday"].value.substring(0,4));
+            var age = (new Date().getFullYear()) - birthYear;
+
+            let flag = true;
+            console.log(pass);
+            console.log(birthYear);
+            console.log(age);
+
+            if(pass.length < 8){
+                document.getElementById("passId").innerHTML = "Password must be at least 8 characters.";
+                flag = false;
+            }else{
+                flag;
+            }
+
+            if (age < 21){
+                document.getElementById("ageId").innerHTML="Minors are not allowed!";
+                flag = false;
+            }
+
+            if(flag == true){
+                document.getElementById("alert").innerHTML = "Congrats!";
+            }else{
+                return false;
+            }
+        }
+    </script>
 </head>
 <style>
     body{
@@ -27,7 +58,7 @@
         padding: 5px 20px;
     }
 
-    input[type="submit"]{
+    input[type="button"]{
         background-color: green;
         color: white;
         border: white;
@@ -40,7 +71,9 @@
 </style>
 <body>
 <div>
+<form id="myForm">
     <h1>Registration Form</h1>
+    <p id="alert" style="color:green;"></p>
     First Name: 
     <br />
     <input type="text" class="container" name="firstname"/>
@@ -59,11 +92,13 @@
     <br />
     Password 
     <br />
-    <input type="password" class="container" name="password"/>
+    <input type="password" class="container" id="password" name="password"/>
+    <p id="passId" style="color:red;"></p>
     <br />
     Date of Birth: 
     <br />
-    <input type="date" class="container" name="bday"/>
+    <input type="date" class="container" id="bday" name="bday"/>
+    <p id="ageId" style="color:red;"></p>
     <br />
     Gender: 
     <br />
@@ -79,8 +114,9 @@
     <br />
     <textarea class="container" name="address" cols="25" rows="10"></textarea>
     <br />
-    <input type="submit" name="submit" value="Submit" />
-    <input type="reset" name="reset" value="Reset"/>
+    <input type="button" name="submit" value="Submit" id="submit" onclick="validForm()"/>
+    <input type="reset" name="reset" value="Reset" id="reset"/>
+</form>
 </div>
 </body>
 </html>
